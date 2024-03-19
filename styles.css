@@ -1,0 +1,114 @@
+:root {
+    --paarl-50: #fcf7f0;
+    --paarl-100: #f9ecdb;
+    --paarl-200: #f2d7b6;
+    --paarl-300: #eabb87;
+    --paarl-400: #e09657;
+    --paarl-500: #d97b36;
+    --paarl-600: #cb642b;
+    --paarl-700: #ab4e26;
+    --paarl-800: #873f25;
+    --paarl-900: #6d3521;
+    --paarl-950: #3b190f;
+    --dark: #181818;
+}
+
+*, ::after, ::before{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(
+        150deg, 
+        var(--paarl-700),
+        var(--paarl-800),
+        var(--dark)
+    );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+main{
+    background-color: var(--paarl-700);
+    padding: 25px;
+    font-size: 20px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px 1px rgb( 0 0 0 / 0.7);
+}
+
+
+.display *{
+    height: 55px;
+    background-color: var(--dark);
+    text-align: end;
+    padding: 10px;
+    border: none;
+    display: block;
+    width: 100%;
+    color: var(--paarl-50);
+}
+
+#result{
+    border-radius: 10px 10px 0 0;
+    font-size: 1.1rem;
+}
+
+#value{
+    border-radius: 0 0 10px 10px;
+    margin-bottom: 20px;
+}
+
+.keys{
+    display: grid;
+    grid-template-columns: repeat(4, 50px);
+    column-gap: 10px;
+    row-gap: 10px;
+    justify-content: center;
+}
+
+button{
+    height: 50px;
+    padding: 10px;
+    border-radius: 50%;
+    color: var(--paarl-50);
+    background-color: var(--paarl-500);
+    text-align: center;
+    border: 1px solid transparent;
+    box-shadow: 1px 1px 6px 0px var(--dark);
+}
+
+button:hover {
+    background-color: var(--paarl-600);
+}
+
+button:active {
+    background-color: var(--paarl-700);
+    border: 1px solid var(--paarl-800);
+}
+
+.col-2 {
+    grid-column: span 2;
+    border-radius: 50px;
+}
+
+.color{
+    background-color: var(--paarl-300);
+    color: var(--paarl-500);
+    font-weight: bold;
+}
+
+.color:hover{
+    color: #fcf7f0;
+    background-color: var(--paarl-400);
+}
+
+.color:active{
+    /* color: #fcf7f0; */
+    background-color: var(--paarl-500);
+}
+
