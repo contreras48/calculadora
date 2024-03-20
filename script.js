@@ -22,12 +22,12 @@ class Display {
     }
 
     updateDisplayResult(value) {
-        this.result = value;
         this.display_result.value = value;
     }
 
     clear() {
         this.value = "";
+        this.result = "";
         this.updateDisplayResult("");
         this.updateDisplayValue(this.value);
     }
@@ -63,31 +63,37 @@ const display = new Display();
 let operator = "";
 
 keys.addEventListener('click', e => {
-    if (e.target.matches('button')){
+    if (e.target.matches('button')) {
         let key = e.target;
         let action = key.dataset.value;
         let content = key.textContent;
 
-        if(!action){
+        if (!action) {
             display.append(content);
-        }else if(action === '+' || action === '-' || action === 'x' || action === '/'){
-            display.updateDisplayResult(display.value);
-            display.value = "";
-            display.updateDisplayValue("");
+        } else if (action === '+' || action === '-' || action === 'x' || action === '/') {
+            if (display.value !== "") {
+                display.updateDisplayResult(display.value + " " + action);
+                display.result = display.value;
+                display.value = "";
+                display.updateDisplayValue("");
+                
+            }else{
+                display.updateDisplayResult(display.result + " " + action);
+            }
             operator = action;
-        }else if(action === 'decimal'){
+        } else if (action === 'decimal') {
             display.appendDecimal();
-        }else if(action === 'calculate'){
+        } else if (action === 'calculate') {
             calculate(display.value, display.result, operator);
-        }else if(action === 'clear'){
+        } else if (action === 'clear') {
             display.clear();
-        }else if(action === "delete"){
+        } else if (action === "delete") {
             display.delete();
         }
     }
 });
 
-function calculate(num1, num2, operator){
+function calculate(num1, num2, operator) {
     let result = 0;
 
     switch (operator) {
