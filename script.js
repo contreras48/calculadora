@@ -72,8 +72,8 @@ keys.addEventListener('click', e => {
             display.append(content);
         } else if (action === '+' || action === '-' || action === 'x' || action === '/') {
             if (display.value !== "") {
-                display.updateDisplayResult(display.value + " " + action);
                 display.result = display.value;
+                display.updateDisplayResult(display.result + " " + action);
                 display.value = "";
                 display.updateDisplayValue("");
                 
@@ -84,7 +84,7 @@ keys.addEventListener('click', e => {
         } else if (action === 'decimal') {
             display.appendDecimal();
         } else if (action === 'calculate') {
-            calculate(display.value, display.result, operator);
+            calculate(display.result, display.value, operator);
         } else if (action === 'clear') {
             display.clear();
         } else if (action === "delete") {
@@ -112,6 +112,7 @@ function calculate(num1, num2, operator) {
     }
 
     display.updateDisplayResult(result);
+    display.result = result;
     display.value = "";
     display.updateDisplayValue("");
 }
