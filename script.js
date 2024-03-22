@@ -29,7 +29,7 @@ class Display {
         this.value = "";
         this.result = "";
         this.updateDisplayResult("");
-        this.updateDisplayValue(this.value);
+        this.updateDisplayValue("");
     }
 
     delete() {
@@ -71,29 +71,34 @@ keys.addEventListener('click', e => {
         if (!action) {
             display.append(content);
         } else if (action === '+' || action === '-' || action === 'x' || action === '/') {
-            if (display.value !== "") {
+            if (display.result === "" && display.value === "") return;
+
+            if (display.value !== "" && display.result === "") {
                 display.result = display.value;
-                display.updateDisplayResult(display.result + " " + action);
                 display.value = "";
                 display.updateDisplayValue("");
-                
-            }else{
-                display.updateDisplayResult(display.result + " " + action);
             }
+
+            display.updateDisplayResult(display.result + " " + action);
             operator = action;
         } else if (action === 'decimal') {
             display.appendDecimal();
         } else if (action === 'calculate') {
-            calculate(display.result, display.value, operator);
+            if(display.value !== "" && display.result !== "") {
+                calculate(display.result, display.value);
+            }
         } else if (action === 'clear') {
             display.clear();
+            operator = "";
         } else if (action === "delete") {
             display.delete();
         }
     }
 });
 
-function calculate(num1, num2, operator) {
+function calculate(num1, num2) {
+    if (operator === "") return;
+    
     let result = 0;
 
     switch (operator) {
@@ -115,4 +120,5 @@ function calculate(num1, num2, operator) {
     display.result = result;
     display.value = "";
     display.updateDisplayValue("");
+    operator = "";
 }
